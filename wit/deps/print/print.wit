@@ -1,0 +1,5 @@
+package example:print;
+
+interface printer {
+    print: func(message: string) -> string;
+}

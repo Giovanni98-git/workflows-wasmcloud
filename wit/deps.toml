@@ -1,0 +1,3 @@
+add="./deps/add/wit"
+print="../../print/wit"
+wait="../../wait/wit"

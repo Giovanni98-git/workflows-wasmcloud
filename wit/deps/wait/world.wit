@@ -1,0 +1,5 @@
+package example:wait;
+
+world wait {
+    export waiter;
+}

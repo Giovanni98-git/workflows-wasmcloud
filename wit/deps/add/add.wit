@@ -1,0 +1,5 @@
+package example:add;
+
+interface adder {
+    add: func(table: string) -> string;
+}

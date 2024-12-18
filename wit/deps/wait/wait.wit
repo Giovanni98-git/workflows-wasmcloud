@@ -1,0 +1,5 @@
+package example:wait;
+
+interface waiter {
+    wait: func(seconds: string) -> string;
+}

@@ -1,0 +1,13 @@
+package wasmcloud:workflows;
+
+world workflows {
+   import wasi:keyvalue/atomics@0.2.0-draft; 
+   import wasi:keyvalue/store@0.2.0-draft; 
+   import wasi:logging/logging@0.1.0-draft; 
+
+   import example:add/adder;
+   //import example:print/printer;
+   //import example:wait/waiter;
+
+   export wasi:http/incoming-handler@0.2.2;
+}

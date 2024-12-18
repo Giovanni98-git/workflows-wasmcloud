@@ -1,0 +1,5 @@
+package example:print;
+
+world print {
+    export printer;
+}
