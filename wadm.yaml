@@ -20,23 +20,23 @@ spec:
           properties:
             instances: 1
     # # Composant print.wasm
-    # - name: print-component
-    #   type: component
-    #   properties:
-    #     image: file://./wasmFile/print.wasm
-    #   traits:
-    #     - type: spreadscaler
-    #       properties:
-    #         instances: 1
+    - name: print-component
+      type: component
+      properties:
+        image: file://./wasmFile/print.wasm
+      traits:
+        - type: spreadscaler
+          properties:
+            instances: 1
     # # Composant wait.wasm
-    # - name: wait-component
-    #   type: component
-    #   properties:
-    #     image: file://./wasmFile/wait.wasm
-    #   traits:
-    #     - type: spreadscaler
-    #       properties:
-    #         instances: 1
+    - name: wait-component
+      type: component
+      properties:
+        image: file://./wasmFile/wait.wasm
+      traits:
+        - type: spreadscaler
+          properties:
+            instances: 1
 
     - name: http-component
       type: component
@@ -55,18 +55,18 @@ spec:
             namespace: example
             package: add
             interfaces: [adder]
-        # - type: link
-        #   properties:
-        #     target: print-component
-        #     namespace: example
-        #     package: print
-        #     interfaces: [printer]
-        # - type: link
-        #   properties:
-        #     target: wait-component
-        #     namespace: example
-        #     package: wait
-        #     interfaces: [waiter]
+        - type: link
+          properties:
+            target: print-component
+            namespace: example
+            package: print
+            interfaces: [printer]
+        - type: link
+          properties:
+            target: wait-component
+            namespace: example
+            package: wait
+            interfaces: [waiter]
 
     
         

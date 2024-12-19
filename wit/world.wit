@@ -6,8 +6,8 @@ world workflows {
    import wasi:logging/logging@0.1.0-draft; 
 
    import example:add/adder;
-   //import example:print/printer;
-   //import example:wait/waiter;
+   import example:print/printer;
+   import example:wait/waiter;
 
    export wasi:http/incoming-handler@0.2.2;
 }

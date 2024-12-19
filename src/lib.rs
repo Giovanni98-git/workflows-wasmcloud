@@ -1,9 +1,13 @@
+wit_bindgen::generate!({ generate_all }); //  génère automatiquement des bindings Rust pour un monde WIT
+
 use wasmcloud_component::{http::{self, ErrorCode, IncomingBody, OutgoingBody, Request, Response, Server}, info};
 use serde::{Deserialize, Serialize};
-use std::{sync::{Arc, Mutex}, thread::sleep, time::Duration};
+use std::sync::{Arc, Mutex};
 use uuid::Uuid;
 use std::io::Read;
 use lazy_static::lazy_static;
+
+use example::{add::adder::add, print::printer::print as printer, wait::waiter::wait};
 
 #[derive(Deserialize)]
 struct Task {
@@ -53,17 +57,19 @@ fn create_workflow(workflow: Workflow, app_state: &AppState) -> String {
         match task.tasktype.as_str() {
             "add" => {
                 let numbers: Vec<i32> = serde_json::from_value(task.value).unwrap();
-                let sum: i32 = numbers.iter().sum();
-                info!("Addition résultat: {}", sum);
+                let paste_numbers = serde_json::to_string(&numbers).unwrap();
+                let response = add(&paste_numbers);
+                info!("{:?}", response);
             }
             "print" => {
                 let text: String = serde_json::from_value(task.value).unwrap();
-                info!("Message à imprimer: {}", text);
+                let message = printer(&text);
+                info!("Message: {}", message);
             }
             "wait" => {
                 let seconds: u64 = serde_json::from_value(task.value).unwrap();
-                sleep(Duration::from_secs(seconds));
-                info!("Attente de {} secondes", seconds);
+                let response = wait(&serde_json::to_string(&seconds).unwrap());
+                info!("{:?}", response);
             }
             _ => {
                 info!("Tâche inconnue: {}", task.tasktype);
@@ -148,6 +154,7 @@ impl Server for Component {
                         let body = serde_json::to_string(&workflow).unwrap();
                         Ok(http::Response::builder()
                             .status(200)
+                            .header("Content-Type", "application/json")
                             .body(body)
                             .unwrap())
                     }
