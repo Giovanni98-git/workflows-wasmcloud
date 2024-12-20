@@ -1,6 +1,6 @@
-# HTTP Hello World
+# workflows-wasmcloud
 
-This is a simple Rust Wasm example that responds with a "Hello World" message for each request.
+workflows-executor build with wasmcloud and rust language
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ wash build
 You must have wasmtime >=25.0.0 for this to work. Make sure to follow the build step above first.
 
 ```bash
-wasmtime serve -Scommon ./build/http_hello_world_s.wasm
+wasmtime serve -Scommon ./build/http_workflows_executor_s.wasm
 ```
 
 ## Running with wasmCloud
